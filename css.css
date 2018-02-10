@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=VT323|Ubuntu:700');
+
+BODY {
+	font: 14px Arial;
+	margin: 0;
+	cursor: default;
+	box-sizing: border-box;
+}
+
+H2 {
+  text-align: center;
+  font: bold 45px VT323;
+  margin: 0;
+  color: white;
+  background: black;
+  padding: 10px;
+}
+
+INPUT, OUTPUT {
+	margin: 5px;
+}
+
+INPUT[type="range"],
+INPUT[type="range"]:focus {
+	-webkit-appearance: none;
+	outline: none;
+}
+
+INPUT[type="range"]::-webkit-slider-runnable-track {
+	background: #0099ff;
+	height: 3px;
+	-webkit-appearance: none;
+}
+
+INPUT[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 15px;
+	width: 15px;
+	background: #fff;
+	border: 1px solid grey;
+	border-radius: 7px;
+	margin-top: -6px;
+	cursor: pointer;
+}
+
+#main {
+	max-width: 960px;
+	margin: 20px auto;
+	display: flex;
+}
+
+#preview {
+	flex-grow: 1;
+}
+
+#preview H3 {
+	text-align: center;
+}
+
+.cone SVG {
+	width: 70px;
+	height: 70px;
+}
+
+.cone POLYGON {
+	stroke: #6b6969;
+	fill: transparent;
+}
+
+#preview #rocket {
+	width: 70px;
+	margin: auto;
+}
+
+#compartments {
+	display: flex;
+	flex-flow: column;
+	position: relative;
+	overflow: hidden;
+}
+
+#compartments SVG {
+	width: 70px;
+	height: 85px;
+}
+
+#compartments RECT {
+	x: 0;
+	y: 0;
+	width: 100%;
+	height: 100%;
+	fill: transparent;
+	stroke: #6b6969;
+}
+
+#compartments LINE {
+	stroke: grey;
+}
+
+#compartments LINE:nth-of-type(1) {
+	x1: 5;
+	y1: 5;
+	x2: 5;
+	y1: 20;
+}
+
+#compartments LINE:nth-of-type(2) {
+	x1: 10;
+	y1: 5;
+	x2: 10;
+	y1: 20;
+}
+
+#rocket_name {
+	position: absolute;
+	left: 50%;
+	top: 10px;
+	width: 10px;
+	word-wrap: break-word;
+  transform: translate(-50%, 0);
+  color: #ff00009e;
+  font: bold 20px monospace;
+  text-transform: uppercase;
+}
+
+#configurator {
+	flex-grow: 5;
+	font-size: 18px;
+	display: grid;
+	grid-template-columns: minmax(150px, 30%) auto;
+	align-content: start;
+}
+
+#configurator > * {
+	padding: 15px 0;
+	border-bottom: 1px dashed black;
+}
+
+#configurator .label {
+	display: flex;
+	align-items: center;
+}
+
+#configurator .input {
+	display: flex;
+}
+
+#configurator .cone {
+	margin: 0 10px;
+	cursor: pointer;
+}
+
+#configurato .cone.active POLYGON {
+	fill: grey;
+}
