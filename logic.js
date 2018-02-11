@@ -6,15 +6,18 @@ function cacheElements() {
 	elements.preview = {
 		cone: document.querySelector('#cone'),
 		compartments: document.querySelector('#compartments'),
-		rocket_name: document.querySelector('#rocket_name'),
-		engines: document.querySelector('#engines')
+		engines: document.querySelector('#engines'),
+		tag: document.querySelector('#tag')
 	};
 	elements.inputs = {
 		configurator: document.querySelector('#configurator'),
 		compartments: document.querySelector('#input_compartments'),
 		cones: document.querySelectorAll('#configurator .cone'),
 		engines: document.querySelectorAll('#configurator .engine'),
-		engines_count: document.querySelector('#input_engines_count')
+		engines_count: document.querySelector('#input_engines_count'),
+		tag: document.querySelector('#input_tag'),
+		tag_color: document.querySelector('#input_tag_color'),
+		tag_scale: document.querySelector('#input_tag_scale')
 	};
 	elements.templates = {
 		compartment: document.querySelector('TEMPLATE.compartment')
@@ -26,6 +29,9 @@ function setEvents() {
 	elements.inputs.cones.forEach(cone => cone.addEventListener('click', handleConeChange));
 	elements.inputs.engines.forEach(engine => engine.addEventListener('click', handleEnginesChange));
 	elements.inputs.engines_count.addEventListener('change', handleEnginesChange);
+	elements.inputs.tag.addEventListener('input', handleTagChange);
+	elements.inputs.tag_color.addEventListener('input', handleTagColorChange);
+	elements.inputs.tag_scale.addEventListener('input', handleTagScaleChange);
 }
 
 function handleCompartmentsChange() {
@@ -66,9 +72,22 @@ function handleEnginesChange() { /*jshint validthis:true */
 	}
 }
 
+function handleTagChange() { /*jshint validthis:true */
+	elements.preview.tag.innerText = this.value.split('').join('\n');
+}
+
+function handleTagColorChange() { /*jshint validthis:true */
+	elements.preview.tag.style.color = this.value;
+}
+
+function handleTagScaleChange() { /*jshint validthis:true */
+	elements.preview.tag.style.transform = 'scaleX(' + this.value + ')';
+}
+
 function initValues() {
-	var input_compartments = document.querySelector('#input_compartments');
-	input_compartments.nextElementSibling.value = input_compartments.value;
+	elements.inputs.compartments.nextElementSibling.value = elements.inputs.compartments.value;
+	elements.preview.tag.style.color = elements.inputs.tag_color.value;
+	elements.preview.tag.style.transform = 'scaleX(' + elements.inputs.tag_scale.value + ')';
 }
 
 document.addEventListener('DOMContentLoaded', () => {

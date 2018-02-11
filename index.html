@@ -12,7 +12,7 @@
 			<div id="rocket">
 				<div id="cone" class="cone"></div>
 				<div id="compartments">
-					<div id="rocket_name">hopper</div>
+					<div id="tag"></div>
 				</div>
 				<div id="engines"></div>
 			</div>
@@ -23,7 +23,7 @@
 			<div class="input">
 				<div class="cone">
 					<svg>
-						<path d="M0,70 v-70 L70,55 v15 z"/>
+						<path d="M0,70 v-15 L70,0 v70 z"/>
 					</svg>
 				</div>
 				<div class="cone">
@@ -63,6 +63,13 @@
 					<option value="2" selected>2</option>
 					<option value="3">3</option>
 				</select>
+			</div>
+			<!-- name tag -->
+			<div class="label">Name tag</div>
+			<div class="input">
+				<input id="input_tag" type="text"  maxlength="20"/> <input id="input_tag_color" type="color" value="#ff0000"/>
+				<break></break>
+				<input id="input_tag_scale" type="range" min="0.75" max="2" value="1" step="0.05"/>
 			</div>
 		</div>
 	</div>
