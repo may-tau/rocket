@@ -10,37 +10,68 @@
 		<div id="preview">
 			<h3>preview</h3>
 			<div id="rocket">
+				<div id="cone" class="cone"></div>
 				<div id="compartments">
 					<div id="rocket_name">hopper</div>
 				</div>
+				<div id="engines"></div>
 			</div>
 		</div>
 		<div id="configurator">
+			<!-- nose cone -->
 			<div class="label">Nose cone</div>
 			<div class="input">
 				<div class="cone">
 					<svg>
-						<polygon points="0 70  0 0  70 50  70 70"></polygon>
+						<path d="M0,70 v-70 L70,55 v15 z"/>
 					</svg>
 				</div>
 				<div class="cone">
 					<svg>
-						<polygon points="0 70  0 50  35 0  70 50  70 70"></polygon>
+						<path d="M0,70 v-15 L35,0 L70,55 v15 z"/>
 					</svg>
 				</div>
-				<div class="cone"></div>
+				<div class="cone">
+					<svg>
+						<path d="M0,70 v-15 Q35,-50 70,55 v15 z"/>
+					</svg>
+				</div>
 			</div>
-
+			<!-- body compartments -->
 			<div class="label">Body compartments count</div>
 			<div class="input"><input id="input_compartments" type="range" min="0" max="5" value="0"><output></output></div>
+			<!-- engines -->
+			<div class="label">Engines</div>
+			<div class="input">
+				<div class="engine">
+					<svg>
+						<path d="M0,30 L6,0 L19,0 L25,30 z"/>
+					</svg>
+				</div>
+				<div class="engine">
+					<svg>
+						<path d="M0,30 v-15 L6,0 L19,0 L25,15 v15 z"/>
+					</svg>
+				</div>
+				<div class="engine">
+					<svg>
+						<path d="M0,30 Q0,10 8,0 L17,0 Q25,10 25,30 z"/>
+					</svg>
+				</div>
+				x<select id="input_engines_count">
+					<option value="1">1</option>
+					<option value="2" selected>2</option>
+					<option value="3">3</option>
+				</select>
+			</div>
 		</div>
 	</div>
 
 	<template class="compartment">
 		<svg>
 			<rect></rect>
-			<line x1="5" y1="5" x2="5" y2="25"></line>
-			<line x1="9" y1="6" x2="9" y2="17"></line>
+			<line x1="5" y1="5" x2="5" y2="25"/>
+			<line x1="9" y1="6" x2="9" y2="17"/>
 		</svg>
 	</template>
 </body>
