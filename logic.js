@@ -4,6 +4,7 @@ var elements = {};
 
 function cacheElements() {
 	elements.preview = {
+		rocket: document.querySelector('#rocket'),
 		cone: document.querySelector('#cone'),
 		compartments: document.querySelector('#compartments'),
 		engines: document.querySelector('#engines'),
@@ -20,8 +21,10 @@ function cacheElements() {
 		tag_scale: document.querySelector('#input_tag_scale')
 	};
 	elements.templates = {
-		compartment: document.querySelector('TEMPLATE.compartment')
+		compartment: document.querySelector('TEMPLATE.compartment'),
+		burn: document.querySelector('TEMPLATE.burn')
 	};
+	elements.curtain = document.querySelector('#curtain');
 }
 
 function setEvents() {
@@ -32,6 +35,9 @@ function setEvents() {
 	elements.inputs.tag.addEventListener('input', handleTagChange);
 	elements.inputs.tag_color.addEventListener('input', handleTagColorChange);
 	elements.inputs.tag_scale.addEventListener('input', handleTagScaleChange);
+	document.querySelector('#igniter').addEventListener('click', ignite);
+	elements.curtain.addEventListener('transitionend', () => elements.preview.rocket.classList.add('ignite'));
+	elements.preview.rocket.addEventListener('animationend', () => elements.curtain.classList.add('postlaunch'));
 }
 
 function handleCompartmentsChange() {
@@ -68,7 +74,9 @@ function handleEnginesChange() { /*jshint validthis:true */
 		active_engine = this;
 	}
 	for (let i = +elements.inputs.engines_count.value; i-- > 0;) {
-		elements.preview.engines.appendChild(document.importNode(active_engine, true));
+		let engine = document.importNode(active_engine, true);
+		engine.firstElementChild.appendChild(document.importNode(elements.templates.burn.content.querySelector('path'), true));
+		elements.preview.engines.appendChild(engine);
 	}
 }
 
@@ -82,6 +90,22 @@ function handleTagColorChange() { /*jshint validthis:true */
 
 function handleTagScaleChange() { /*jshint validthis:true */
 	elements.preview.tag.style.transform = 'scaleX(' + this.value + ')';
+}
+
+function ignite() {
+	if (!elements.preview.cone.childElementCount) {
+		window.alert('Can\'t fly without a nose!');
+		return;
+	}
+	if (!elements.preview.compartments.querySelector('SVG')) {
+		window.alert('No body, no party!');
+		return;
+	}
+	if (!elements.preview.engines.childElementCount) {
+		window.alert('No can do without engines! Obviously.');
+		return;
+	}
+	elements.curtain.classList.add('up');
 }
 
 function initValues() {

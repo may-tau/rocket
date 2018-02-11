@@ -71,14 +71,25 @@
 				<break></break>
 				<input id="input_tag_scale" type="range" min="0.75" max="2" value="1" step="0.05"/>
 			</div>
+			<p>
+				<button id="igniter">ignite</button>
+			</p>
 		</div>
 	</div>
+
+	<div id="curtain"><h2>Congratulations!🎉<br>Your rocket boldly went where no man has gone before</h2></div>
 
 	<template class="compartment">
 		<svg>
 			<rect></rect>
 			<line x1="5" y1="5" x2="5" y2="25"/>
 			<line x1="9" y1="6" x2="9" y2="17"/>
+		</svg>
+	</template>
+
+	<template class="burn">
+		<svg>
+			<path class="burn" d="M3,31 L0,40 H25 L22,31"/>
 		</svg>
 	</template>
 </body>
